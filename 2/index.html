@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>About Me | Aninda</title>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <header class="site-header">
+            <p class="logo">Aninda</p>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" id="top">
+                <img
+                class = "avatar"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' fill='%230f8b8d'/><text x='60' y='75' font-size='48' text-anchor='middle' fill='white' font-family='sans-serif'>AK</text></svg>"
+                alt="Profile picture placeholder with the initials AK"
+                width= 120
+                height= 120
+                />
+                <div class="hero-text">
+                    <h1>Hi, I'm Aninda.</h1>
+                    <p>
+                        I'm a third-year <strong>B.Tech Computer Science</strong> tudent at KIIT University, Bhubaneswar. I'm currently building my skills in <em>full-stack web development.</em>
+                    </p>
+                    <a class="button" href="#contact">Get in touch</a>
+                </div>
+            </section>
+    
+            <section class="section" id="about">
+                <h2>About me</h2>
+                <p>
+                   I enjoy working and solving problems while
+                   playing some chill songs. Currently im learning
+                   HTML, CSS and JavaScript, practising DSA in python
+                   , and helping with website for my family cosmetics bussiness 
+                </p>
+                <p>
+                    Outside of coding, I like gaming and watching anime.
+                    Edit this text and make it yours. It's the fastest way to practise.
+                </p>
+                <p>
+                    Currently learning: <span class="highlight">JavaScript</span>
+                </p>
+            </section>
+            <section class="section" id="skills">
+                <h2>Skills</h2>
+
+                <h3>Things I know</h3>
+                <!-- <ul> = unordered list (bullets). Each item is an <li>. -->
+                <ul class="skill-list">
+                    <li>HTML (basics)</li>
+                    <li>CSS (basics)</li>
+                    <li>C++ and DSA practice</li>
+                </ul>
+
+                <h3>My learning plan</h3>
+                <!-- <ol> = ordered list (numbers). Use it when the ORDER matters. -->
+                <ol>
+                    <li>Finish HTML and CSS revision</li>
+                    <li>Learn JavaScript fundamentals</li>
+                    <li>Build small projects with JavaScript</li>
+                    <li>Move on to a framework and backend</li>
+                </ol>
+            </section>
+
+            <section class="section" id="experience">
+                <h2>Experience</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SkillCraft Technology</td>
+                            <td>Internship</td>
+                        </tr>
+                        <tr>
+                            <td>Scalifra</td>
+                            <td>Internship</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section class="section" id="contact">
+                <h2>Contact</h2>
+                <form class="contact-form" id="contact-form">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+                    <label for="email">Your email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Write something..."></textarea>
+
+                    <button type="submit">Send message</button>
+                </form>
+            </section>
+
+            <footer class="site-footer">
+                <!-- &copy; is an "HTML entity" that shows the © symbol -->
+                <p>&copy; 2026 Aninda. Built with HTML and CSS.</p>
+            </footer>
+        </main>
+    </body>
+</html>

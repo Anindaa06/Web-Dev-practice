@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--
+  HTML REVISION NOTES (read the comments top to bottom)
+
+  1. <!DOCTYPE html> tells the browser "this is modern HTML5".
+     It is not a tag, just a declaration. Always the first line.
+
+  2. Comments look like this one. The browser ignores them.
+
+  3. Almost every element has an opening tag <p> and a closing tag </p>.
+     Some are "void" elements with no closing tag: <img>, <br>, <hr>, <input>, <meta>, <link>.
+
+  4. Attributes give extra info to a tag: <a href="..." class="...">
+     name="value" pairs, written inside the opening tag.
+-->
+<html lang="en">
+  <!-- lang="en" helps screen readers and search engines know the language -->
+
+  <head>
+    <!-- HEAD = information ABOUT the page. Nothing here is shown on the page itself. -->
+
+    <meta charset="UTF-8" />
+    <!-- charset makes sure symbols and non-English letters display correctly -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Without this line, phones show a zoomed-out desktop page. Needed for responsive design. -->
+
+    <meta name="description" content="About Aninda, a B.Tech CSE student learning full-stack web development." />
+    <!-- Shown by search engines under your page title -->
+
+    <title>About Me | Aninda</title>
+    <!-- The text on the browser tab -->
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- Connects the CSS file. href is the path to it (same folder here). -->
+  </head>
+
+  <body>
+    <!-- BODY = everything the visitor actually sees. -->
+
+    <!--
+      SEMANTIC TAGS: <header>, <nav>, <main>, <section>, <footer>
+      They look the same as <div> by default, but they describe the MEANING of each part.
+      That helps accessibility, SEO, and keeps your code readable.
+    -->
+    <header class="site-header">
+      <p class="logo">Aninda</p>
+
+      <!-- <nav> holds navigation links. A list inside is the standard pattern. -->
+      <nav>
+        <ul class="nav-links">
+          <!-- href="#id" scrolls to the element that has that id on THIS page -->
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Only ONE <main> per page: the main content. -->
+    <main>
+      <!-- ========== INTRO / HERO ========== -->
+      <section class="hero" id="top">
+        <!--
+          <img> is a void element. Two attributes matter most:
+            src = where the image is
+            alt = text description (used by screen readers, and shown if the image fails to load)
+          Here src is a tiny inline SVG so the page works without any image file.
+          Later, replace it with your real photo: src="me.jpg"
+          width and height help the browser reserve space so the page doesn't jump while loading.
+        -->
+        <img
+          class="avatar"
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' fill='%230f8b8d'/><text x='60' y='75' font-size='48' text-anchor='middle' fill='white' font-family='sans-serif'>AK</text></svg>"
+          alt="Profile picture placeholder with the initials AK"
+          width="120"
+          height="120"
+        />
+
+        <div class="hero-text">
+          <!-- Headings go h1 to h6. Use ONE h1 per page, then h2, h3 in order. Never pick a heading just for its size, that's CSS's job. -->
+          <h1>Hi, I'm Aninda.</h1>
+
+          <!-- <p> = paragraph. <strong> = important text (bold). <em> = emphasis (italic). -->
+          <p>
+            I'm a third-year <strong>B.Tech Computer Science</strong> student at KIIT University,
+            Bhubaneswar. I'm currently building my skills in <em>full-stack web development</em>.
+          </p>
+
+          <!-- A link styled as a button. A class is how CSS finds it. -->
+          <a class="button" href="#contact">Get in touch</a>
+        </div>
+      </section>
+
+      <!-- ========== ABOUT ========== -->
+      <!-- id must be UNIQUE on the page. It's what the nav link href="#about" points to. -->
+      <section class="section" id="about">
+        <h2>About me</h2>
+
+        <p>
+          I enjoy turning ideas into working things on the screen. Right now I'm learning
+          HTML, CSS and JavaScript, practising DSA in C++, and helping with the website for my
+          family's cosmetics business.
+        </p>
+
+        <p>
+          Outside of coding, I like gaming and watching anime.<br />
+          <!-- <br /> is a line break. Use it rarely. Use separate <p> tags for separate paragraphs. -->
+          Edit this text and make it yours. It's the fastest way to practise.
+        </p>
+
+        <!-- <span> is a generic INLINE container (no meaning). <div> is the generic BLOCK container. -->
+        <p>Currently learning: <span class="highlight">JavaScript</span></p>
+      </section>
+
+      <!-- ========== SKILLS ========== -->
+      <section class="section" id="skills">
+        <h2>Skills</h2>
+
+        <h3>Things I know</h3>
+        <!-- <ul> = unordered list (bullets). Each item is an <li>. -->
+        <ul class="skill-list">
+          <li>HTML (basics)</li>
+          <li>CSS (basics)</li>
+          <li>C++ and DSA practice</li>
+        </ul>
+
+        <h3>My learning plan</h3>
+        <!-- <ol> = ordered list (numbers). Use it when the ORDER matters. -->
+        <ol>
+          <li>Finish HTML and CSS revision</li>
+          <li>Learn JavaScript fundamentals</li>
+          <li>Build small projects with JavaScript</li>
+          <li>Move on to a framework and backend</li>
+        </ol>
+      </section>
+
+      <!-- ========== EXPERIENCE ========== -->
+      <section class="section" id="experience">
+        <h2>Experience</h2>
+
+        <!--
+          <table> is for DATA that belongs in rows and columns. Never use it for page layout.
+          <thead> header group, <tbody> body group, <tr> row, <th> header cell, <td> data cell.
+        -->
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SkillCraft Technology</td>
+              <td>Internship</td>
+            </tr>
+            <tr>
+              <td>Scalifra</td>
+              <td>Internship</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!--
+          External link: full URL in href.
+          target="_blank" opens a new tab. rel="noopener noreferrer" is a safety habit that goes with it.
+        -->
+        <p>
+          See my code on
+          <a href="https://github.com/Anindaa06" target="_blank" rel="noopener noreferrer">GitHub</a>.
+        </p>
+      </section>
+
+      <!-- ========== CONTACT ========== -->
+      <section class="section" id="contact">
+        <h2>Contact</h2>
+
+        <!--
+          <form> collects user input. For now it does nothing when submitted.
+          JavaScript will take it over later, which is why the elements have ids.
+
+          <label for="x"> connects to the input with id="x".
+          Clicking the label focuses the input. This matters for accessibility.
+
+          Common input types: text, email, password, number, checkbox, radio.
+          "required" makes the browser block empty submissions.
+          "placeholder" is the grey hint text inside the box.
+        -->
+        <form class="contact-form" id="contact-form">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+          <label for="email">Your email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Write something..."></textarea>
+
+          <button type="submit">Send message</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <!-- &copy; is an "HTML entity" that shows the © symbol -->
+      <p>&copy; 2026 Aninda. Built with HTML and CSS.</p>
+    </footer>
+
+    <!--
+      WHERE JAVASCRIPT WILL GO (next step):
+      <script src="script.js"></script>
+      Put it right before </body> so the HTML loads first.
+    -->
+  </body>
+</html>

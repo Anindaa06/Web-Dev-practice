@@ -1,0 +1,373 @@
+/*
+  CSS REVISION NOTES
+
+  A CSS rule looks like this:
+
+      selector {
+        property: value;
+      }
+
+  The selector says WHICH elements. Each property: value; line says HOW they look.
+
+  Three ways to add CSS (we use #1, which is the best habit):
+    1. External file:  <link rel="stylesheet" href="style.css">
+    2. Internal:       <style> ... </style> inside <head>
+    3. Inline:         <p style="color: red;">  (avoid, it's hard to maintain)
+*/
+
+
+/* ============================================================
+   1. CSS VARIABLES (custom properties)
+   Define a value once, reuse it everywhere with var(--name).
+   :root means the whole page (the <html> element).
+   ============================================================ */
+:root {
+  --ink: #1b2433;       /* main text colour */
+  --muted: #5b6577;     /* softer text */
+  --paper: #f6f8fb;     /* page background */
+  --card: #ffffff;
+  --accent: #0f8b8d;    /* teal, used for links and buttons */
+  --accent-soft: #dff1f1;
+  --line: #d9e0ea;
+  --radius: 10px;
+}
+
+
+/* ============================================================
+   2. RESET + BOX MODEL
+   * means "every element".
+   Every element is a box: content + padding + border + margin.
+
+       margin   -> space OUTSIDE the border
+       border   -> the edge line
+       padding  -> space INSIDE the border, around the content
+       content  -> the text/image itself
+
+   By default, width only covers the content, so padding and border make the box
+   bigger than you asked for. box-sizing: border-box makes width include
+   padding and border. It is the sane default, so almost every project starts with it.
+   ============================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;       /* remove the browser's default spacing so WE control it */
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;   /* nav links glide instead of jumping */
+}
+
+
+/* ============================================================
+   3. TYPOGRAPHY + BODY
+   Properties here are INHERITED: set on <body>, they flow down to
+   the children (p, li, a...). Not all properties inherit (margin doesn't).
+   ============================================================ */
+body {
+  /* font-family is a fallback list. The browser uses the first one it has. */
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;         /* rem = relative to the root font size (usually 16px). Scales well. */
+  line-height: 1.6;        /* space between lines. Unitless = multiple of font size. */
+  color: var(--ink);
+  background-color: var(--paper);
+}
+
+/* Several selectors with one rule: separate with commas (a GROUP selector) */
+h1, h2, h3 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 { font-size: 2.5rem; margin-bottom: 0.75rem; }
+h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }  /* shorthand: top, left/right, bottom */
+
+p { margin-bottom: 1rem; }
+
+/*
+  MARGIN / PADDING SHORTHAND
+    margin: 10px;                 -> all four sides
+    margin: 10px 20px;            -> top+bottom, left+right
+    margin: 10px 20px 30px;       -> top, left+right, bottom
+    margin: 10px 20px 30px 40px;  -> top, right, bottom, left (clockwise)
+*/
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* PSEUDO-CLASS: a state of an element. :hover = mouse is over it. */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Keyboard users need to see where they are, so never remove focus styles without replacing them */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   4. SELECTOR TYPES (a quick map)
+     p            element (type) selector: every <p>
+     .card        class selector: anything with class="card"   (reusable, most common)
+     #about       id selector: the ONE element with id="about" (unique)
+     nav a        descendant selector: every <a> anywhere inside <nav>
+     ul > li      child selector: <li> that is a DIRECT child of <ul>
+     a:hover      pseudo-class (a state)
+     .a.b         both classes on the same element
+
+   SPECIFICITY (who wins when rules conflict):
+     inline style  >  #id  >  .class  >  element
+   If the specificity is equal, the rule that comes LATER in the file wins.
+   ============================================================ */
+
+
+/* ============================================================
+   5. HEADER + NAV  (display, flexbox, position)
+   ============================================================ */
+.site-header {
+  /*
+    FLEXBOX: display: flex turns the element into a flex container.
+    Its direct children become flex items laid out in a row (the default).
+      justify-content -> alignment along the MAIN axis (horizontal in a row)
+      align-items     -> alignment along the CROSS axis (vertical in a row)
+  */
+  display: flex;
+  justify-content: space-between;   /* logo on the left, nav on the right */
+  align-items: center;
+  flex-wrap: wrap;                   /* items drop to the next line if there's no room */
+  gap: 0.75rem;                      /* space BETWEEN flex items */
+
+  padding: 1rem 2rem;
+  background-color: var(--card);
+  border-bottom: 1px solid var(--line);  /* shorthand: width style colour */
+
+  /*
+    POSITION:
+      static   (default) normal flow
+      relative offset from its normal place, still takes up space
+      absolute placed relative to the nearest positioned parent, removed from the flow
+      fixed    stuck to the viewport
+      sticky   scrolls normally, then sticks at the offset (top: 0) once reached
+  */
+  position: sticky;
+  top: 0;
+  z-index: 10;   /* stacking order. Higher number = on top. Works on positioned elements. */
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.nav-links {
+  list-style: none;       /* removes bullets */
+  display: flex;          /* makes the <li> items sit in a row */
+  gap: 1.5rem;
+}
+
+
+/* ============================================================
+   6. HERO SECTION
+   ============================================================ */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  max-width: 900px;        /* never wider than 900px, but can shrink on small screens */
+  margin: 0 auto;          /* auto left/right margins center a block with a set width */
+  padding: 4rem 2rem;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;       /* 50% turns a square into a circle */
+  flex-shrink: 0;           /* don't let flexbox squash the image */
+}
+
+.button {
+  /*
+    DISPLAY:
+      block        takes the full width, starts on a new line (div, p, h1, section)
+      inline       only as wide as content, can't set width/height (span, a)
+      inline-block sits in a line like inline, but accepts width, height, padding, margin
+      none         hides the element completely
+  */
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  background-color: var(--accent);
+  color: #ffffff;
+  border-radius: var(--radius);
+  font-weight: 600;
+
+  /* TRANSITION: animate changes smoothly. Property, duration, easing. */
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #0b6e70;
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   7. SECTIONS (a reusable class)
+   ============================================================ */
+.section {
+  max-width: 900px;
+  margin: 0 auto 2rem;      /* top 0, left/right auto, bottom 2rem */
+  padding: 2rem;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+
+  /* Offset for the sticky header so the heading isn't hidden when a nav link scrolls here */
+  scroll-margin-top: 5rem;
+}
+
+.highlight {
+  background-color: var(--accent-soft);
+  padding: 0.1rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Lists */
+.skill-list {
+  list-style-type: square;   /* disc | circle | square | none */
+  padding-left: 1.5rem;      /* browsers indent lists with padding. We reset it above, so add it back */
+}
+
+ol {
+  padding-left: 1.5rem;
+}
+
+
+/* ============================================================
+   8. TABLE
+   ============================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;   /* merge the double borders between cells into one */
+  margin-bottom: 1rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  background-color: var(--accent-soft);
+}
+
+/* :nth-child(even) selects every second row, useful for zebra stripes */
+tbody tr:nth-child(even) {
+  background-color: var(--paper);
+}
+
+
+/* ============================================================
+   9. FORM
+   Here we use a vertical stack: flex-direction: column
+   (main axis becomes vertical).
+   ============================================================ */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 500px;
+}
+
+.contact-form label {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+input,
+textarea {
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;        /* form fields ignore body fonts by default. This makes them match. */
+}
+
+textarea {
+  resize: vertical;     /* user can only resize up/down */
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;      /* hand cursor on hover */
+}
+
+button:hover {
+  background-color: #0b6e70;
+}
+
+
+/* ============================================================
+   10. FOOTER
+   ============================================================ */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--muted);
+}
+
+.site-footer p {
+  margin-bottom: 0;
+}
+
+
+/* ============================================================
+   11. RESPONSIVE DESIGN: MEDIA QUERY
+   These rules only apply when the condition is true.
+   Here: when the screen is 600px wide or LESS (phones).
+   We write the normal (desktop) styles first, then override for small screens.
+   ============================================================ */
+@media (max-width: 600px) {
+  .site-header {
+    padding: 1rem;
+  }
+
+  .hero {
+    flex-direction: column;   /* stack the avatar above the text */
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .section {
+    margin: 0 1rem 1.5rem;
+    padding: 1.25rem;
+  }
+}
+
+
+/*
+  NOT USED HERE, BUT WORTH KNOWING BEFORE JAVASCRIPT:
+    CSS Grid:  display: grid; grid-template-columns: repeat(3, 1fr);   (2D layouts, rows AND columns)
+    Units:     px (fixed), % (of parent), rem (of root font), em (of parent font), vw/vh (of viewport)
+    Colours:   names (red), hex (#0f8b8d), rgb(15, 139, 141), hsl(181, 80%, 30%)
+*/
