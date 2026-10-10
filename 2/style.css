@@ -37,6 +37,7 @@ html{
     border-bottom: 1px solid var(--line);
     position: sticky;
     top: 0;
+    padding-bottom: 0.2rem;
 }
 
 .logo{
@@ -62,7 +63,7 @@ html{
 
     max-width: 900;
     margin: 0 auto;
-    padding: 3.5rem 2rem;
+    padding: 4rem 2rem;
     border-bottom: 1 solid var(--line);
     background-color: var(--paper);
 }

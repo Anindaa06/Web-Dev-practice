@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind CSS Tour</title>
+
+  <!--
+    TAILWIND VIA CDN (for learning only; real projects install it with npm).
+    One script tag = every utility class is available. No style.css needed.
+  -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <!--
+    CUSTOM CONFIG: add your own colours, fonts, etc. Then use bg-brand, text-brand...
+  -->
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { brand: "#0f8b8d" } } }
+    };
+  </script>
+
+  <!--
+    THE BIG IDEA
+    Instead of writing CSS like  .btn { padding: 8px 16px; background: teal; }
+    you stack small single-purpose classes right in the HTML:
+        class="px-4 py-2 bg-brand text-white"
+    Each class = one CSS declaration. Memorise the pattern, not every class:
+      p = padding, m = margin, x = left+right, y = top+bottom, t/r/b/l = one side
+      Numbers are a scale: 1 = 0.25rem (4px), 4 = 1rem (16px), 8 = 2rem (32px)
+  -->
+</head>
+
+<!-- bg-slate-50 = background colour, text-slate-800 = text colour, antialiased = smoother text -->
+<body class="bg-slate-50 text-slate-800 antialiased dark:bg-slate-900 dark:text-slate-100">
+  <!-- dark: prefix applies when your OS is in dark mode. Try switching your OS theme. -->
+
+  <!-- ===== 1. NAVBAR: flex, justify, items, sticky, z-index, hover ===== -->
+  <header class="sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-700 dark:bg-slate-800/90">
+    <!--
+      sticky top-0   -> position: sticky; top: 0
+      z-10           -> z-index: 10
+      border-b       -> border-bottom: 1px
+      bg-white/90    -> white at 90% opacity (the /90 is an opacity modifier)
+      backdrop-blur  -> blurs whatever is behind the bar
+    -->
+    <nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+      <!--
+        mx-auto          -> margin left/right auto (centers the block)
+        flex             -> display: flex
+        max-w-5xl        -> max-width: 64rem
+        items-center     -> align-items: center
+        justify-between  -> justify-content: space-between
+      -->
+      <span class="text-xl font-bold text-brand">Aninda</span>
+
+      <ul class="flex gap-6 text-sm font-medium">
+        <!-- gap-6 -> gap: 1.5rem between flex items -->
+        <li><a href="#layout" class="hover:text-brand">Layout</a></li>
+        <li><a href="#type" class="hover:text-brand">Type</a></li>
+        <li><a href="#states" class="hover:text-brand">States</a></li>
+        <li><a href="#form" class="hover:text-brand">Form</a></li>
+      </ul>
+      <!-- hover:text-brand -> text colour changes only on hover (state prefix) -->
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-5xl space-y-16 px-4 py-12">
+    <!-- space-y-16 -> adds vertical space between every direct child (no margins needed) -->
+
+    <!-- ===== 2. HERO: gradient, rounded, shadow, responsive text ===== -->
+    <section class="rounded-2xl bg-gradient-to-br from-brand to-indigo-600 p-8 text-white shadow-xl sm:p-12">
+      <!--
+        bg-gradient-to-br   -> gradient towards bottom-right
+        from-brand to-indigo-600 -> start and end colours
+        rounded-2xl         -> large border-radius
+        shadow-xl           -> big drop shadow
+        p-8 sm:p-12         -> padding 2rem; from the "sm" breakpoint up, 3rem
+      -->
+      <h1 class="text-3xl font-extrabold tracking-tight sm:text-5xl">Learning Tailwind CSS</h1>
+      <!--
+        RESPONSIVE: mobile first. No prefix = all screens. Prefix = that size and UP.
+          sm: 640px   md: 768px   lg: 1024px   xl: 1280px   2xl: 1536px
+        So text-3xl on phones, sm:text-5xl on larger screens.
+      -->
+      <p class="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
+        Every style on this page is a utility class. Open the file and read the comments.
+      </p>
+      <a href="#layout" class="mt-6 inline-block rounded-lg bg-white px-5 py-2.5 font-semibold text-brand transition hover:bg-slate-100">
+        Start the tour
+      </a>
+      <!-- mt-6 = margin-top, inline-block = display, transition = animate hover changes smoothly -->
+    </section>
+
+    <!-- ===== 3. LAYOUT: grid + responsive columns ===== -->
+    <section id="layout" class="scroll-mt-20">
+      <h2 class="mb-6 text-2xl font-bold">Grid and responsive layout</h2>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <!--
+          grid grid-cols-1        -> one column on phones
+          md:grid-cols-3          -> three equal columns from 768px up
+          gap-6                   -> space between cells
+        -->
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold">Card one</h3>
+          <p class="mt-2 text-sm text-slate-500">border, rounded-xl, shadow-sm, p-6</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold">Card two</h3>
+          <p class="mt-2 text-sm text-slate-500">Resize the window to watch columns stack.</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold">Card three</h3>
+          <p class="mt-2 truncate text-sm text-slate-500">truncate cuts long text with an ellipsis instead of wrapping it</p>
+        </div>
+      </div>
+
+      <!-- SIZING: w-/h- (w-1/2 = 50%, w-full = 100%, h-16 = 4rem), arbitrary values in [] -->
+      <div class="mt-6 flex flex-wrap items-center gap-4">
+        <div class="h-16 w-16 rounded-full bg-brand"></div>             <!-- 4rem circle -->
+        <div class="h-16 w-1/3 rounded-lg bg-indigo-500"></div>          <!-- one third of the width -->
+        <div class="h-[50px] w-[120px] rounded bg-amber-400"></div>      <!-- [ ] = any custom value -->
+        <div class="aspect-video w-40 rounded-lg bg-rose-400"></div>     <!-- 16:9 box -->
+      </div>
+    </section>
+
+    <!-- ===== 4. TYPOGRAPHY ===== -->
+    <section id="type" class="scroll-mt-20">
+      <h2 class="mb-6 text-2xl font-bold">Typography</h2>
+      <div class="space-y-2">
+        <p class="text-sm">text-sm</p>
+        <p class="text-base">text-base (default 1rem)</p>
+        <p class="text-2xl font-light">text-2xl font-light</p>
+        <p class="text-2xl font-black italic">text-2xl font-black italic</p>
+        <p class="font-mono uppercase tracking-widest text-brand">font-mono uppercase tracking-widest</p>
+        <p class="underline decoration-wavy decoration-rose-400 underline-offset-4">underline with decoration</p>
+        <p class="max-w-md text-justify leading-loose text-slate-500">
+          leading-loose sets line-height, max-w-md limits line length, text-justify aligns both edges.
+          Other common ones: text-left, text-center, text-right.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== 5. STATES, TRANSITIONS, TRANSFORMS, ANIMATION ===== -->
+    <section id="states" class="scroll-mt-20">
+      <h2 class="mb-6 text-2xl font-bold">States and motion</h2>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <!-- hover:, focus:, active: change the style in that state -->
+        <button class="rounded-lg bg-brand px-5 py-2.5 font-semibold text-white transition hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-brand/40 active:scale-95">
+          Hover, focus, click me
+        </button>
+
+        <!-- disabled: style for disabled elements -->
+        <button disabled class="rounded-lg bg-slate-300 px-5 py-2.5 font-semibold text-slate-500 disabled:cursor-not-allowed">
+          Disabled
+        </button>
+
+        <!-- hover transform: scale, translate, rotate. duration-* sets speed -->
+        <div class="rounded-xl bg-indigo-500 px-5 py-3 font-semibold text-white transition duration-300 hover:-translate-y-1 hover:rotate-2 hover:scale-105 hover:shadow-lg">
+          Hover to lift
+        </div>
+
+        <!-- built-in animations -->
+        <div class="h-4 w-4 animate-bounce rounded-full bg-rose-500"></div>
+        <div class="h-4 w-24 animate-pulse rounded bg-slate-300"></div>
+        <div class="h-6 w-6 animate-spin rounded-full border-4 border-brand border-t-transparent"></div>
+      </div>
+
+      <!--
+        group / group-hover: hover the PARENT, change a CHILD.
+        Mark the parent with "group", then use group-hover: on the child.
+      -->
+      <div class="group mt-6 cursor-pointer overflow-hidden rounded-xl bg-slate-800 p-6 text-white">
+        <p class="font-semibold">Hover this card</p>
+        <p class="translate-y-2 text-sm opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">
+          This text appeared because the parent was hovered.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== 6. FORM ===== -->
+    <section id="form" class="scroll-mt-20">
+      <h2 class="mb-6 text-2xl font-bold">Form styling</h2>
+
+      <form class="max-w-md space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+        <div>
+          <label for="name" class="mb-1 block text-sm font-medium">Name</label>
+          <input id="name" type="text" placeholder="Your name"
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-slate-600 dark:bg-slate-700" />
+          <!-- placeholder: styles the hint text, w-full fills the width -->
+        </div>
+
+        <div>
+          <label for="msg" class="mb-1 block text-sm font-medium">Message</label>
+          <textarea id="msg" rows="3"
+            class="w-full resize-none rounded-lg border border-slate-300 px-3 py-2 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-slate-600 dark:bg-slate-700"></textarea>
+        </div>
+
+        <button type="submit" class="w-full rounded-lg bg-brand py-2.5 font-semibold text-white hover:bg-teal-700">Send</button>
+      </form>
+    </section>
+
+    <!-- ===== 7. POSITION + OVERFLOW (badge on a card) ===== -->
+    <section>
+      <h2 class="mb-6 text-2xl font-bold">Position</h2>
+      <!-- relative parent + absolute child = child placed relative to the parent -->
+      <div class="relative h-32 max-w-sm rounded-xl bg-white p-6 shadow dark:bg-slate-800">
+        <span class="absolute -right-2 -top-2 rounded-full bg-rose-500 px-3 py-1 text-xs font-bold text-white">NEW</span>
+        <p>A badge pinned to the top-right corner.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 py-8 text-center text-sm text-slate-500 dark:border-slate-700">
+    Built with Tailwind CSS utility classes.
+  </footer>
+
+  <!--
+    QUICK RECAP
+    - Spacing: p-4, mx-auto, space-y-4, gap-4
+    - Sizing: w-full, max-w-md, h-16, w-[120px]
+    - Layout: flex, grid, grid-cols-3, items-center, justify-between
+    - Look: bg-*, text-*, border, rounded-*, shadow-*, opacity-*
+    - Prefixes: md: (responsive), hover:, focus:, dark:, group-hover:
+    - Docs and search: tailwindcss.com/docs
+  -->
+</body>
+</html>
