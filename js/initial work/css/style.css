@@ -1,0 +1,23 @@
+button{
+  color: black;
+  background-color: aliceblue;
+  padding: 8px 20px;
+  margin-right: 20px;
+  border: none;
+}
+
+#1{
+  color: green;
+}
+
+.try{
+  background-color: whitesmoke;
+  border: 1px solid black;
+  padding: 5px 30px;
+  font-weight: bold;
+}
+
+.new{
+  border-radius: 7px;
+  background-color: lightgreen;
+}

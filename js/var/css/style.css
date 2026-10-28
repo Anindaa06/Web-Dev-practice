@@ -1,0 +1,22 @@
+.b1{
+  color: whitesmoke;
+  padding: 10px 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  border: none;
+  background-color:  rgb(87, 165, 18);
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.b2 {
+  color: rgb(225, 208, 25);
+  padding: 10px 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  border: none;
+  background-color:  rgb(177, 222, 234);
+  font-weight: bold;
+  border-radius: 5px;
+}
+

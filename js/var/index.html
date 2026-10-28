@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variable</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <button class="b1" onclick="cartQuantity += 1;
+  document.querySelector('.t1').innerText = `Your bag has ` + cartQuantity + ` item`">Add to Bag</button>
+
+  <button class="b2" onclick="cartQuantity -= 1;
+  document.querySelector('#cart').innerText = `Your bag has ${cartQuantity} item`">Move to WishList</button>
+
+  <button class="b1">Add Sale item</button>
+
+  <h1 class="t1" id="cart">Your bag contains 0 items</h1>
+
+  <script src="scripts/index.js"></script>
+</body>
+</html>
