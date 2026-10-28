@@ -7,16 +7,46 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div id="calc">
+    <h2 id="display">default</h2>
 
-  <button class="b1" onclick="cartQuantity += 1;
-  document.querySelector('.t1').innerText = `Your bag has ` + cartQuantity + ` item`">Add to Bag</button>
+    <div id="rows">
+    <button class="special-buttons" id="(">(</button>
+    <button class="special-buttons" id=")">)</button>
+    <button class="special-buttons" id="%">%</button>
+    <button class="special-buttons" id="ac">AC</button>
+    </div>
 
-  <button class="b2" onclick="cartQuantity -= 1;
-  document.querySelector('#cart').innerText = `Your bag has ${cartQuantity} item`">Move to WishList</button>
+    <div id="rows">
+    <button id="7">7</button>
+    <button id="8">8</button>
+    <button id="9">9</button>
+    <button id="/" class="special-buttons">/</button>
+    </div>
 
-  <button class="b1">Add Sale item</button>
+    <div id="rows">
+    <button id="4">4</button>
+    <button id="5">5</button>
+    <button id="6">6</button>
+    <button class="special-buttons" id="*">*</button>
+    </div>
 
-  <h1 class="t1" id="cart">Your bag contains 0 items</h1>
+    <div id="rows">
+    <button id="1">1</button>
+    <button id="2">2</button>
+    <button id="3">3</button>
+    <button class="special-buttons" id="-">-</button>
+    </div>
+
+    <div id="rows">
+    <button id="0">0</button>
+    <button id=".">.</button>
+    <button id="=">=</button>
+    <button class="special-buttons" id="+">+</button>
+    </div>
+
+  </div>
+
 
   <script src="scripts/index.js"></script>
 </body>

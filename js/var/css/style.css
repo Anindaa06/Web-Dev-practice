@@ -1,22 +1,42 @@
-.b1{
-  color: whitesmoke;
-  padding: 10px 20px;
-  margin-left: 20px;
-  margin-top: 20px;
-  border: none;
-  background-color:  rgb(87, 165, 18);
-  font-weight: bold;
+#display {
+  border: 1px solid black;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0 auto 10px;
+  width: 310px;
   border-radius: 5px;
 }
 
-.b2 {
-  color: rgb(225, 208, 25);
-  padding: 10px 20px;
-  margin-left: 20px;
-  margin-top: 20px;
-  border: none;
-  background-color:  rgb(177, 222, 234);
-  font-weight: bold;
-  border-radius: 5px;
+#calc {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 200px;
+  margin-left: 50px;
+  margin-right: 50px;
+  align-items: center;
 }
 
+button {
+  width: 70px;
+  height: 50px;
+  color: black;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(204, 202, 202);
+}
+
+#rows {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.special-buttons {
+  background-color: rgb(103, 103, 206);
+  color: aliceblue;
+}
