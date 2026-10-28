@@ -8,41 +8,81 @@
 </head>
 <body>
   <div id="calc">
-    <h2 id="display">default</h2>
+    <h2 id="display">0</h2>
 
     <div id="rows">
-    <button class="special-buttons" id="(">(</button>
-    <button class="special-buttons" id=")">)</button>
-    <button class="special-buttons" id="%">%</button>
-    <button class="special-buttons" id="ac">AC</button>
+    <button class="special-buttons" id="(" onclick="
+    currentDisplay = currentDisplay + `(`;
+    document.querySelector('#display').innerText = currentDisplay ">(</button>
+    <button class="special-buttons" id=")" onclick="
+    currentDisplay = currentDisplay + `)`;
+    document.querySelector('#display').innerText = currentDisplay ">)</button>
+    <button class="special-buttons" id="%" onclick="
+    currentDisplay = currentDisplay + `%`;
+    document.querySelector('#display').innerText = currentDisplay ">%</button>
+    <button class="special-buttons" id="ac" onclick="
+    currentDisplay = ``;
+    document.querySelector('#display').innerText = currentDisplay ">AC</button>
     </div>
 
     <div id="rows">
-    <button id="7">7</button>
-    <button id="8">8</button>
-    <button id="9">9</button>
-    <button id="/" class="special-buttons">/</button>
+    <button id="7" onclick="
+    currentDisplay = currentDisplay + `7`;
+    document.querySelector('#display').innerText = currentDisplay ">7</button>
+    <button id="8" onclick="
+    currentDisplay = currentDisplay + `8`;
+    document.querySelector('#display').innerText = currentDisplay ">8</button>
+    <button id="9" onclick="
+    currentDisplay = currentDisplay + `9`;
+    document.querySelector('#display').innerText = currentDisplay ">9</button>
+    <button id="/" class="special-buttons" onclick="
+    currentDisplay = currentDisplay + `/`;
+    document.querySelector('#display').innerText = currentDisplay ">/</button>
     </div>
 
     <div id="rows">
-    <button id="4">4</button>
-    <button id="5">5</button>
-    <button id="6">6</button>
-    <button class="special-buttons" id="*">*</button>
+    <button id="4" onclick="
+    currentDisplay = currentDisplay + `4`;
+    document.querySelector('#display').innerText = currentDisplay ">4</button>
+    <button id="5" onclick="
+    currentDisplay = currentDisplay + `5`;
+    document.querySelector('#display').innerText = currentDisplay ">5</button>
+    <button id="6" onclick="
+    currentDisplay = currentDisplay + `6`;
+    document.querySelector('#display').innerText = currentDisplay ">6</button>
+    <button class="special-buttons" id="*" onclick="
+    currentDisplay = currentDisplay + `*`;
+    document.querySelector('#display').innerText = currentDisplay ">*</button>
     </div>
 
     <div id="rows">
-    <button id="1">1</button>
-    <button id="2">2</button>
-    <button id="3">3</button>
-    <button class="special-buttons" id="-">-</button>
+    <button id="1" onclick="
+    currentDisplay = currentDisplay + `1`;
+    document.querySelector('#display').innerText = currentDisplay ">1</button>
+    <button id="2" onclick="
+    currentDisplay = currentDisplay + `2`;
+    document.querySelector('#display').innerText = currentDisplay ">2</button>
+    <button id="3" onclick="
+    currentDisplay = currentDisplay + `3`;
+    document.querySelector('#display').innerText = currentDisplay ">3</button>
+    <button class="special-buttons" id="-" onclick="
+    currentDisplay = currentDisplay + `-`;
+    document.querySelector('#display').innerText = currentDisplay ">-</button>
     </div>
 
     <div id="rows">
-    <button id="0">0</button>
-    <button id=".">.</button>
-    <button id="=">=</button>
-    <button class="special-buttons" id="+">+</button>
+    <button id="0" onclick="
+    currentDisplay = currentDisplay + `0`;
+    document.querySelector('#display').innerText = currentDisplay ">0</button>
+    <button id="." onclick="
+    currentDisplay = currentDisplay + `.`;
+    document.querySelector('#display').innerText = currentDisplay ">.</button>
+    <button id="=" onclick="
+    currentDisplay = eval(currentDisplay);
+    document.querySelector('#display').innerText = currentDisplay ">=</button>
+    <button class="special-buttons" id="+" onclick="
+    currentDisplay = currentDisplay + `+`;
+    document.querySelector('#display').innerText = currentDisplay ">+</button>
     </div>
 
   </div>
