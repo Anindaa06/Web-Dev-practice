@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button onclick="
+    let choice = Math.floor(Math.random() * 3);
+    let computerchoice;
+    if (choice > 0 && choice <= 1){
+      computerchoice = 'Bat';
+    } else if (choice > 1 && choice <= 2) {
+      computerchoice = 'Ball';
+    } else{
+      computerchoice = 'Stump';
+    }
+    let result;
+    if (computerchoice === 'Bat') {
+      result = 'Its draw';
+    } else if (computerchoice === 'Ball'){
+      result = 'You won';
+    } else {
+      result = 'You lost';
+    }
+    alert(`Your choice Bat. Computer choice ${computerchoice} ${result}`)
+    ">Bat</button>
+  <button>Ball</button>
+  <button>Stump</button>
+</body>
+</html>
