@@ -11,8 +11,8 @@
   <button onclick="
     let computerchoice = computerChoice();
     let result = getResult(`Bat`, computerchoice);
-    return giveAlert(`Bat`, computerchoice, result);
-    ">Bat</button>
+    giveAlert(`Bat`, computerchoice, result);
+  ">Bat</button>
 
   <button onclick="
     let computerchoice = computerChoice();
@@ -23,7 +23,7 @@
   <button onclick="
     let computerchoice = computerChoice();
     let result = getResult(`Stump`, computerchoice);
-    return giveAlert(`Stump`, computerchoice, result);
+    giveAlert(`Stump`, computerchoice, result);
   ">Stump</button>
 
   <script>
@@ -41,34 +41,51 @@
     function getResult(userchoice, computerchoice){
       if (userchoice === `Bat`) {
         if (computerchoice === 'Bat') {
+          score.Draw++ ;
           return 'Its draw';
         } else if (computerchoice === 'Ball'){
+          score.Win++ ;
           return 'You won';
         } else {
+          score.Loss++ ;
           return 'You lost';
         }
       } else if (userchoice === `Ball`) {
         if (computerchoice === 'Bat') {
+          score.Loss++ ;
           return 'You lost';
         } else if (computerchoice === 'Ball'){
+          score.Draw++ ;
           return 'Its draw';
         } else {
+          score.Win++ ;
           return 'You won';
         }
       } else {
         if (computerchoice === 'Bat') {
-          result = 'You won';
+          score.Win++ ;
+          return 'You won';
         } else if (computerchoice === 'Ball'){
-          result = 'You lost';
+          score.Loss++ ;
+          return 'You lost';
         } else {
-          result = 'Its draw';
+          score.Draw++ ;
+          return 'Its draw';
         }
       }
     }
 
     function giveAlert(userchoice, computerchoice, result){
-      alert(`User's choice is ${userchoice}, computer's choice is ${computerchoice}, ${result}`);
+      alert(`User's choice is ${userchoice}, Computer's choice is ${computerchoice}, ${result}.`);
+
+      console.log(score);
     }
+
+    let score = {
+      Win: 0,
+      Loss: 0,
+      Draw: 0 
+    };
   </script>
 </body>
 </html>
