@@ -7,27 +7,68 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <button onclick="
-    let choice = Math.floor(Math.random() * 3);
-    let computerchoice;
-    if (choice > 0 && choice <= 1){
-      computerchoice = 'Bat';
-    } else if (choice > 1 && choice <= 2) {
-      computerchoice = 'Ball';
-    } else{
-      computerchoice = 'Stump';
-    }
-    let result;
-    if (computerchoice === 'Bat') {
-      result = 'Its draw';
-    } else if (computerchoice === 'Ball'){
-      result = 'You won';
-    } else {
-      result = 'You lost';
-    }
-    alert(`Your choice Bat. Computer choice ${computerchoice} ${result}`)
+    let computerchoice = computerChoice();
+    let result = getResult(`Bat`, computerchoice);
+    return giveAlert(`Bat`, computerchoice, result);
     ">Bat</button>
-  <button>Ball</button>
-  <button>Stump</button>
+
+  <button onclick="
+    let computerchoice = computerChoice();
+    let result = getResult(`Ball`, computerchoice);
+    giveAlert(`Ball`, computerchoice, result);
+  ">Ball</button>
+
+  <button onclick="
+    let computerchoice = computerChoice();
+    let result = getResult(`Stump`, computerchoice);
+    return giveAlert(`Stump`, computerchoice, result);
+  ">Stump</button>
+
+  <script>
+    function computerChoice() {
+      let choice = Math.floor(Math.random() * 3);
+      if (choice > 0 && choice <= 1){
+        return 'Bat';
+      } else if (choice > 1 && choice <= 2) {
+        return 'Ball';
+      } else{
+        return 'Stump';
+      }
+    }
+
+    function getResult(userchoice, computerchoice){
+      if (userchoice === `Bat`) {
+        if (computerchoice === 'Bat') {
+          return 'Its draw';
+        } else if (computerchoice === 'Ball'){
+          return 'You won';
+        } else {
+          return 'You lost';
+        }
+      } else if (userchoice === `Ball`) {
+        if (computerchoice === 'Bat') {
+          return 'You lost';
+        } else if (computerchoice === 'Ball'){
+          return 'Its draw';
+        } else {
+          return 'You won';
+        }
+      } else {
+        if (computerchoice === 'Bat') {
+          result = 'You won';
+        } else if (computerchoice === 'Ball'){
+          result = 'You lost';
+        } else {
+          result = 'Its draw';
+        }
+      }
+    }
+
+    function giveAlert(userchoice, computerchoice, result){
+      alert(`User's choice is ${userchoice}, computer's choice is ${computerchoice}, ${result}`);
+    }
+  </script>
 </body>
 </html>
