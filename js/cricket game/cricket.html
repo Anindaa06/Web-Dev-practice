@@ -76,15 +76,20 @@
     }
 
     function giveAlert(userchoice, computerchoice, result){
-      alert(`User's choice is ${userchoice}, Computer's choice is ${computerchoice}, ${result}.`);
-
+      alert(`User's choice is ${userchoice}, Computer's choice is ${computerchoice}
+${result}
+${score.displayScore()}`);
       console.log(score);
     }
 
     let score = {
       Win: 0,
       Loss: 0,
-      Draw: 0 
+      Draw: 0,
+
+      displayScore: function() {
+        return `Won: ${score.Win}, Loss: ${score.Loss}, Draw: ${score.Draw}`;
+      }
     };
   </script>
 </body>
