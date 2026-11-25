@@ -7,8 +7,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="headings">
+    <h1>Cricket Game</h1>
+  </div>
 
-  <button onclick="
+  <div class="buttons">
+    <button onclick="
     let computerchoice = computerChoice();
     let result = getResult(`Bat`, computerchoice);
     giveAlert(`Bat`, computerchoice, result);
@@ -26,6 +30,17 @@
     giveAlert(`Stump`, computerchoice, result);
   ">Stump</button>
 
+  </div>
+
+  <div class="clear">
+    <button class="clearButton" onclick="
+      localStorage.clear();
+      score.Win = 0;
+      score.Loss = 0;
+      score.Draw = 0;
+      ">clear</button>
+  </div>
+  
   <script>
     function computerChoice() {
       let choice = Math.floor(Math.random() * 3);
@@ -76,6 +91,7 @@
     }
 
     function giveAlert(userchoice, computerchoice, result){
+      localStorage.setItem('score', JSON.stringify(score));
       alert(`User's choice is ${userchoice}, Computer's choice is ${computerchoice}
 ${result}
 ${score.displayScore()}`);
@@ -91,6 +107,10 @@ ${score.displayScore()}`);
         return `Won: ${score.Win}, Loss: ${score.Loss}, Draw: ${score.Draw}`;
       }
     };
+
+    let scstore = JSON.stringify(score);
+    localStorage.setItem('score', scstore);
+    console.log(localStorage.getItem('score'));
   </script>
 </body>
 </html>
